@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AdminAuth, { useAdminAuth } from "../context/AdminAuth";
+import { useAdminAuth } from "../context/AdminAuth";
 import instance from "../../../axiosConfig";
 
 function AdminLogin() {

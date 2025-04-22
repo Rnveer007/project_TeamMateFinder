@@ -14,5 +14,4 @@ router.get("/checkUser", checkUser,(req,res)=>res.send({message:"Access Granted"
 
 
 
-
 export default router;

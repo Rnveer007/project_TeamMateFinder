@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import instance from "../../../axiosConfig";
 import { Link } from "react-router-dom";
+import instance from "../../../axiosConfig";
 
 function Register() {
   const [form, setForm] = useState({

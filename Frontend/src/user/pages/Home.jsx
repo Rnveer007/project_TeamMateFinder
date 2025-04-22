@@ -15,7 +15,7 @@ function Home() {
   const showAdminData = async () => {
     try {
       const response = await instance.get(`/user/hackathons`)
-      console.log(response.data);
+      // console.log(response.data);
 
       // setUserData(response.data.adminData);
       setHackathons(response.data.hackathons)

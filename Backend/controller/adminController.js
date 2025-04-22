@@ -6,7 +6,7 @@ export async function addHackathon(req, res) {
         const id = req.admin;
         const file = req.file;
         // const { anantId}  = req.user
-console.log(id);
+        console.log(id);
 
         // checking file type
         if (!file || !file.mimetype.startsWith("image/")) {
@@ -22,7 +22,7 @@ console.log(id);
 
         // getting the Cloudinary url for image
         const secure_url = await uploadToCloudinary(req).catch((err) => {
-            throw new Error("Cloudinary upload failed");
+            throw new Error(`Cloudinary upload failed: ${err.message}`);
         });
 
         // finding the admin
@@ -39,7 +39,7 @@ console.log(id);
             date,
             image: secure_url,
         };
-console.log(Admin);
+        // console.log(Admin);
 
         // saving the hackathon data into the admin
         Admin.Hackathon.push(newHackathon);
@@ -154,7 +154,7 @@ export async function adminUpdate(req, res) {
 export async function showHackathon(req, res) {
     try {
         // const adminId = req.params.adminId
-        const adminId  = req.admin;
+        const adminId = req.admin;
 
         const fetchHackathon = await admin.findById(adminId)
         if (!fetchHackathon) return res.status(404).json({ message: "Admin Not Found" })
@@ -172,6 +172,7 @@ export async function showHackathon(req, res) {
 export async function showAdminData(req, res) {
     try {
         const adminId = req.admin
+// console.log(adminId);
 
         const adminData = await admin.findById(adminId)
         if (!adminData) return res.status(404).json({ message: "Admin Not Found" })

@@ -4,7 +4,7 @@ import mongoose, { Schema } from "mongoose"
 const hackathonSchema = new Schema({
     name: {
         type: String,
-        // required: true,
+        required: true,
         unique: true
     },
     mode: {

@@ -75,7 +75,7 @@ const router = createBrowserRouter([
           </AdminProtectedRoute>
       },
       {
-        path: ":hId/editHackathon",
+        path: ":id/editHackathon",
         element: <AdminProtectedRoute>
           <EditHackathon />
         </AdminProtectedRoute>

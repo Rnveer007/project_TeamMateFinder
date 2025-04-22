@@ -23,7 +23,7 @@ export async function adminRegister(req, res) {
         return res.status(200).json({ message: "Admin Succesfully Created" });
     }
     catch (error) {
-        console.log(error);
+        console.log(error,error.message);
         return res.status(500).json({ message: "Error in Registering" });
 
     }
@@ -50,6 +50,7 @@ export async function adminLogin(req, res) {
             { expiresIn: "1h" }
         )
 
+        // console.log("admin", adminToken);
         
         res.cookie("adminToken", adminToken, {
             httpOnly: true,
@@ -119,7 +120,7 @@ export async function userLogin(req, res) {
 
         const User = await user.findOne({ email })
 
-        if (!User) return res.status(401).json({ message: "Invalid Credentials" });
+        if (!User) return res.status(401).json({ message: "Invalid Credentials" })
 
         const isPasswordValid = await bcrypt.compare(password, User.password)
 
@@ -133,8 +134,9 @@ export async function userLogin(req, res) {
             }, process.env.JWT_SECRET,
             { expiresIn: "1h" }
         )
+// console.log(userToken);
 
-        res.cookie("UserToken", userToken, {
+        res.cookie("userToken", userToken, {
             httpOnly: true,
             secure: false,
             sameSite: "strict"
@@ -145,7 +147,7 @@ export async function userLogin(req, res) {
                 email: User.email
             }
         })
-
+     
 
     } catch (error) {
         console.log("Login Error", error)

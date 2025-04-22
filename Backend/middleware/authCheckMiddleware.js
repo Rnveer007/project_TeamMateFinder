@@ -27,14 +27,14 @@ import admin from "../models/adminModel.js";
 export function checkAdmin(req, res, next) {
 
     const token = req.cookies.adminToken;
+console.log(req.cookies);
 
     if (!token) return res.status(401).send({ message: "No Token Found" });
     try {
-
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         req.admin = decoded.id;
-        // console.log(req.admin);
+        console.log(req.admin);
 
         next();
     }
@@ -43,4 +43,4 @@ export function checkAdmin(req, res, next) {
     }
 }
 
-export default checkAdmin;
+// export default checkAdmin;
